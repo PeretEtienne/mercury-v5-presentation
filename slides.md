@@ -90,3 +90,35 @@ Nouveau système de cloud-function pour gérer les demandes d'analyses en ligne
 
 ---
 
+# ConfigManager 🔧
+
+---
+
+## What is configurable ?
+
+📊 Filters
+  - CNA, exons, fusions, germline, somatic, RNA only, QC genes, QC hotspots
+
+🧮 Counting filters
+  - CNA, germline, somatic, QC Genes, QC Hotspots
+
+🖥️ Overview
+
+📋Report blocks
+
+---
+## How is it better ?
+
+One place instead of being spread in the code
+
+App code is now designed to be more flexible and is not anymore an accumulation of special cases
+
+New config as easy as a copy/paste thanks to overriding/inheritance
+
+Powerfull JSON syntax accessible for everyone (bioinf, dev) _(yet to be documented)_
+
+Versionning of the configuration thanks to git
+
+No more need to deploy the app to change the config
+
+New config slice can be considered more easily
