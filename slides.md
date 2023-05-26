@@ -69,6 +69,8 @@ Un back-office pour les bioinfs et les commerciaux qui permet de :
   - Gérer les utilisateurs dans les licences
   - Gérer les rôles des utilisateurs pour chaque licence
 
+Caching
+
 ---
 
 # |- Update
@@ -122,3 +124,59 @@ Versionning of the configuration thanks to git
 No more need to deploy the app to change the config
 
 New config slice can be considered more easily
+
+---
+
+# Some User stories
+
+---
+
+## From connection to PDF
+
+- Login to Overview
+- Overview to results
+- Click variant to modal
+- Id card button to page  
+- Go back to somatic page
+- Change filters to result
+- Clicinal report link to page
+
+Legacy : https://www.loom.com/share/5b45b11d702349c899d5c78cf475bf0a
+Rework : https://www.loom.com/share/cdd431d776a941f3bcf76e513898b208
+
+---
+## Results
+
+| Step                         | Legacy | Rework | Absolute gain (s) | Relatif gain (%) |
+|------------------------------|-------:|-------:|------------------:|-----------------:|
+| Login to Overview            |     28 |     19 |                 -9 |               -32 |
+| Overview to results          |     20 |      5 |                -15 |               -75 |
+| _Click variant to modal_     |   _23_ |    _0_ |              _-23_ |            _-100_ |
+| Id card button to page       |      6 |      4 |                 -2 |               -33 |
+| Go back to somatic page      |     19 |      0 |                -19 |              -100 |
+| _Change filters to result_   |   _32_ |    _7_ |              _-25_ |             _-78_ |
+| Clicinal report link to page |     29 |      9 |                -20 |               -69 |
+
+---
+
+## Somatic table navigation
+
+
+| Step                           | Legacy | Rework | Absolute gain (s) | Relatif gain (%) |
+|--------------------------------|-------:|-------:|------------------:|-----------------:|
+| Default filters to new filters |      9 |      6 |                 -3 |               -33 |
+| to page 2                      |      5 |      5 |                 0 |                0 |
+| to page 1                      |      9 |      0 |                 -9 |              -100 |
+| to default filters             |      6 |      0 |                 -6 |              -100 |
+
+---
+
+## Page navigation
+
+| Step                        | Legacy | Rework | Absolute gain (s) | Relatif gain (%) |
+|-----------------------------|-------:|-------:|------------------:|-----------------:|
+| Dashboard to overview       |      6 |      3 |                -3 |              -50 |
+| overview to somatic results |     18 |      3 |               -15 |              -83 |
+| to dashboard                |     13 |      0 |               -13 |             -100 |
+| dashboard to overview       |      6 |      0 |                -6 |             -100 |
+| overview to somatic results |     20 |      0 |               -20 |             -100 |
