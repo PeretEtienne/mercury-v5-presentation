@@ -19,6 +19,10 @@ class: invert
   h6 {
     text-shadow: rgba(9,75,113,0.5) 0px 0px 18px;
   }
+
+  strong {
+    color: #00bcd4;
+  }
 </style>
 
 
@@ -28,6 +32,9 @@ Coming real soon now
 ---
 
 # |- Why ?
+
+
+  ⏳ Mercury does not bring great UX with long loading times, infinite tab opening, no direct links, etc...
 
   ⚙️ Mercury has not been created with customisation in mind
 
@@ -39,91 +46,42 @@ Coming real soon now
 
   ⚠️ API endpoints does not respect any REST conventions 
 
-  ⏳ Mercury does not bring great UX with long loading times, infinite tab opening, no direct links, etc...
-
 ---
 
 # |- How ?
 
-  🚀 API REST 
-    ✅ PHP 8 
-    ✅ Symfony 5.4
-  ⚡ React
-  🐋 Docker
-  🔥 Google Cloud Platform
+🚀 API rework
+- ✅ PHP 8 
+- ✅ Symfony 5.4
+- ✅ More RESTful
+
+⚡ New UI with improved UX
+- ⚛️ React
+- 🚅 React Router
+- 🔄 React Query
+
+🐋 Docker
+🔥 Google Cloud Platform
 
 ---
 
-# |- New
+# |- What changed ?
 
-Alias des noms de gènes ![TP53 alias](./imgs/genes-alias-TP53.png)
-  - La recherche peut se faire sur les alias des noms de gènes
-  - Les alias sont affichés dans les résultats de recherche
-  - Les alias sont affichés dans les détails d'un gène
+---
 
-Un back-office pour les bioinfs et les commerciaux qui permet de :
-  - Créer des utilisateurs
-  - Créer des licences
-  - Ajouter des crédits aux licences
-  - Gérer les analyses dans les licences
-  - Gérer les utilisateurs dans les licences
-  - Gérer les rôles des utilisateurs pour chaque licence
+## |- User experience
+
+**Mercury feels and IS faster**
+
+Client side navigation
+  - No more page reload
+  - No more infinite tab opening
 
 Caching
 
----
+Direct links are now working + new UI part are now linkable
 
-# |- Update
-
-Les comptages vont être relancés sur chaque analyse
-  - Les comptages seront plus précis
-  - Une seule source de vérité (au lieu de 3 actuellement)
-
-Les filtres sont maintenant personnelles
-  - Ils peuvent aussi être partagés avec d'autres utilisateurs de ses licences
-  - Nouvelle page de gestion des filtres
-
-Nouveau système de cloud-function pour gérer les demandes d'analyses en ligne
-  - Plus de problème de token qui expire pendant l'upload : 
-    -- Les analyses auront le bon statut
-    -- Les emails pour prévenir les bioinfs d'une nouvelle analyse seront envoyés
-  - Les analyses ne se crées pas à l'avance mais uniquement quand l'upload aboutit
-  - Les crédits se débitent quand l'upload aboutit
-
----
-
-# ConfigManager 🔧
-
----
-
-## What is configurable ?
-
-📊 Filters
-  - CNA, exons, fusions, germline, somatic, RNA only, QC genes, QC hotspots
-
-🧮 Counting filters
-  - CNA, germline, somatic, QC Genes, QC Hotspots
-
-🖥️ Overview
-
-📋Report blocks
-
----
-## How is it better ?
-
-One place instead of being spread in the code
-
-App code is now designed to be more flexible and is not anymore an accumulation of special cases
-
-New config as easy as a copy/paste thanks to overriding/inheritance
-
-Powerfull JSON syntax accessible for everyone (bioinf, dev) _(yet to be documented)_
-
-Versionning of the configuration thanks to git
-
-No more need to deploy the app to change the config
-
-New config slice can be considered more easily
+Dark mode
 
 ---
 
@@ -180,3 +138,129 @@ Rework : https://www.loom.com/share/cdd431d776a941f3bcf76e513898b208
 | to dashboard                |     13 |      0 |               -13 |             -100 |
 | dashboard to overview       |      6 |      0 |                -6 |             -100 |
 | overview to somatic results |     20 |      0 |               -20 |             -100 |
+
+---
+
+# Easier configuration with ConfigManager 🔧
+
+---
+
+## What is configurable ?
+
+📊 Filters
+  - CNA, exons, fusions, germline, somatic, RNA only, QC genes, QC hotspots
+
+🧮 Counting filters
+  - CNA, germline, somatic, QC Genes, QC Hotspots
+
+🖥️ Overview
+
+📋Report blocks
+
+---
+## How is it better ?
+
+One place instead of being spread in the code
+
+App code is now designed to be more flexible and is not anymore an accumulation of special cases
+
+New config as easy as a copy/paste thanks to overriding/inheritance
+
+Powerfull JSON syntax accessible for everyone (bioinf, dev) _(yet to be documented)_
+
+Versionning of the configuration thanks to git
+
+No more need to deploy the app to change the config
+
+New config slice can be considered more easily
+
+---
+
+# Maintenance 📆
+---
+
+## Back office
+
+Create easaly with a dedicated interface : 
+
+- Users
+- Licences
+- Credits
+- Analyses
+- Assign analysis to licences
+- Assign users to licences
+
+Use "User impersonation" to see what a user see and debug more easily
+
+---
+# Other new features or improvments 🎉
+
+## Alias 🧬
+
+Mercury is now handling gene aliases
+
+![Gene alias](./imgs/Gene_alias.png)
+
+All aliases are searchable. No risk to miss a variant because of using other gene name
+
+Dejavu service can now find previous encountered variants even if the gene name was different at the time
+
+---
+
+## Favorite filters ⭐
+
+New visualisation of favorite filters
+
+Favorite filters can now be shared with other users of the same licences
+
+![Favorite filters](./imgs/ff_filters.png)
+
+---
+
+## New counting system 🧮
+
+Finally counting have a predictable behaviour !
+
+Filters done to count pass now through the same code as the one used to display the results
+
+Filters are setup in configManager (which means they are fully configurable)
+
+CNA counts (Amplificaitons, deletions, cnLOH) are now done on CNA results and not anymore on the CNA present in somatic results
+
+**Counting has been restarted on all analyses.**
+
+All in all, the counting is now more __predictable__ and __configurable__ !
+
+---
+
+## New upload alerts 🌩️
+
+
+Upload alerts are now handled by a cloud function
+
+The email is now sure to be sent **after** all files has been uploaded
+
+Analysis on Mercury is **only** created if all files are uploaded and successfully processed
+
+Credits are **only** debited if all files are uploaded and successfully processed
+
+--- 
+
+# What's next ?
+
+
+---
+
+## Open beta is ready
+
+An open beta will start soon to have real user feedback
+
+Daily DB sync
+
+⚠️ User password has to be reset for Mercury new version
+
+---
+
+## What's left ?
+
+Bioinf pipelines need to use the new API for a real launch
