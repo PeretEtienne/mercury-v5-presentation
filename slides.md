@@ -22,6 +22,7 @@ class: invert
 
   strong {
     color: #00bcd4;
+    font-weight: bold;
   }
 </style>
 
@@ -71,7 +72,7 @@ Coming real soon now
 
 ## |- User experience
 
-**Mercury feels and IS faster**
+Mercury **feels** and **IS** faster
 
 Client side navigation
   - No more page reload
@@ -181,7 +182,7 @@ New config slice can be considered more easily
 
 ## Back office
 
-Create easaly with a dedicated interface : 
+Create easely with a dedicated interface : 
 
 - Users
 - Licences
@@ -221,7 +222,7 @@ Favorite filters can now be shared with other users of the same licences
 
 Finally counting have a predictable behaviour !
 
-Filters done to count pass now through the same code as the one used to display the results
+Filters done to count now go through the same code as the one used to display the results
 
 Filters are setup in configManager (which means they are fully configurable)
 
